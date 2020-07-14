@@ -10,7 +10,7 @@ var userStorage = NewUserController()
 func NewUserController() *map[string]User {
 	usr1 := User{Name: "Wardenclock",
 		ID: "id0"}
-	usr2 := User{Name: "Karmik",
+	usr2 := User{Name: "KarmikKoala",
 		ID: "id1"}
 	usr3 := User{Name: "Devolver",
 		ID: "id2"}
