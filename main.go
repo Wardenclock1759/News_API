@@ -11,7 +11,6 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/article", controllers.GetArticle).Methods("GET")
-	router.HandleFunc("/articleSorted", controllers.GetArticlesSortedByLikes).Methods("GET")
 	router.HandleFunc("/article", controllers.AddArticle).Methods("POST")
 	router.HandleFunc("/article/{ID}", controllers.GetArticleByID).Methods("GET")
 
