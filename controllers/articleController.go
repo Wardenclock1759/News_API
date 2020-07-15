@@ -46,7 +46,7 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 	article, ok := models.GetArticleByID(id)
 
 	if !ok {
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -57,21 +57,6 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Write(jsonArticle)
-}
-
-func GetArticlesSortedByLikes(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("content-type", "application/json")
-	articles := models.GetArticlesSortedByLikes()
-
-	res, err := json.Marshal(articles)
-
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(err.Error()))
-		return
-	}
-
-	w.Write(res)
 }
 
 func AddArticle(w http.ResponseWriter, r *http.Request) {

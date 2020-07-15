@@ -63,7 +63,7 @@ func GetLikeByID(w http.ResponseWriter, r *http.Request) {
 	like, ok := models.GetLikeByID(id)
 
 	if !ok {
-		w.WriteHeader(http.StatusNotFound)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
