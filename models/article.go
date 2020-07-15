@@ -15,23 +15,45 @@ var articleStorage = NewArticleController()
 
 func NewArticleController() *map[string]Article {
 	art1 := Article{Title: "Sport is cool",
-		ID: "First",
+		ID: "1st",
 		Tag: Tag{
-			ID:   "ID1",
+			ID:   "id1",
 			Name: "Sport",
 		}}
 
 	art2 := Article{Title: "Sport is bad",
-		ID: "Second",
+		ID: "2nd",
 		Tag: Tag{
-			ID:   "ID2",
-			Name: "Health",
+			ID:   "id2",
+			Name: "Celebrity",
+		}}
+
+	art3 := Article{Title: "Lovi yadro x1",
+		ID: "3rd",
+		Tag: Tag{
+			ID:   "id0",
+			Name: "None",
+		}}
+	art4 := Article{Title: "Lovi yadro x2",
+		ID: "4th",
+		Tag: Tag{
+			ID:   "id1",
+			Name: "Sport",
+		}}
+	art5 := Article{Title: "Lovi yadro x3",
+		ID: "5th",
+		Tag: Tag{
+			ID:   "id0",
+			Name: "None",
 		}}
 
 	res := map[string]Article{}
 
 	res[art1.ID] = art1
 	res[art2.ID] = art2
+	res[art3.ID] = art3
+	res[art4.ID] = art4
+	res[art5.ID] = art5
 
 	return &res
 }
@@ -95,21 +117,6 @@ func GetArticleByID(id string) (*Article, bool) {
 	article, ok := storage[id]
 	article.LikedBy = *users
 	return &article, ok
-}
-
-func GetArticlesSortedByLikes() []Article {
-	storage := *articleStorage
-
-	articles := make([]Article, len(storage))
-	i := 0
-	for _, article := range storage {
-		articles[i] = article
-		i++
-	}
-
-	sort.Sort(ByLikesDesc(articles))
-
-	return articles
 }
 
 func SortByLikesDesc(articles []Article) []Article {

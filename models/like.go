@@ -14,15 +14,15 @@ var likeStorage = NewLikeController()
 
 func NewLikeController() *map[string]Like {
 	l1 := Like{
-		ID:        GenerateID(),
-		ArticleID: "First",
+		ID:        "id1",
+		ArticleID: "1st",
 		UserID:    "id0",
 		LikedAt:   time.Now(),
 	}
 
 	l2 := Like{
 		ID:        "id0",
-		ArticleID: "id1",
+		ArticleID: "1st",
 		UserID:    "id1",
 		LikedAt:   time.Now(),
 		UnlikedAt: time.Now(),
