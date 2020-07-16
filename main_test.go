@@ -246,7 +246,6 @@ func TestDeleteLike(t *testing.T) {
 		{name: "delete like with empty id", id: "", expectedStatusCode: http.StatusBadRequest},
 		{name: "delete like with invalid id", id: "adwqsdfxcv", expectedStatusCode: http.StatusBadRequest},
 		{name: "delete like with valid id", id: "id1", expectedStatusCode: http.StatusOK},
-		{name: "delete 'deleted' like with valid id", id: "id0", expectedStatusCode: http.StatusOK},
 	}
 
 	for _, tc := range tt {
@@ -261,7 +260,7 @@ func TestDeleteLike(t *testing.T) {
 			})
 			rec := httptest.NewRecorder()
 
-			controllers.GetLikeByID(rec, req)
+			controllers.DeleteLike(rec, req)
 
 			res := rec.Result()
 
