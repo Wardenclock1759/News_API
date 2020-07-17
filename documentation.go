@@ -19,7 +19,7 @@ type articleTagsWrapper struct {
 
 // swagger:parameters list_articles
 type sortOrderWrapper struct {
-	// order "'ASC' or 'DESC' to sort articles by number of likes"
+	// order 'ASC' or 'DESC' to sort articles by number of likes
 	// in: query
 	Order string `json:"order"`
 }

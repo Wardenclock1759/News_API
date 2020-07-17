@@ -97,7 +97,7 @@ paths:
         name: tags
         type: string
         x-go-name: Tags
-      - description: order "'ASC' or 'DESC' to sort articles by number of likes"
+      - description: order 'ASC' or 'DESC' to sort articles by number of likes
         in: query
         name: order
         type: string
