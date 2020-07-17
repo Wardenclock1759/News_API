@@ -93,12 +93,12 @@ paths:
       operationId: list_articles
       parameters:
       - description: string of tag names separated by ',' to filter articles in storage
-        example: None,Sport,Astronomy
+        example: '"None,Sport,Astronomy"'
         in: query
         name: tags
         type: string
         x-go-name: Tags
-      - description: order "ASC" or "DESC" to sort articles by number of likes
+      - description: order "'ASC' or 'DESC' to sort articles by number of likes"
         example: DESC
         in: query
         name: order
@@ -131,7 +131,7 @@ paths:
       operationId: get_article_by_id
       parameters:
       - description: uuid of article to get or delete article from storage
-        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        example: '"22e07f21-85cf-4ee6-ba35-330066b046cf"'
         in: path
         name: id
         required: true
@@ -169,7 +169,7 @@ paths:
       operationId: delete_like_by_id
       parameters:
       - description: uuid of like to get or delete article-user pair from storage
-        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        example: '"22e07f21-85cf-4ee6-ba35-330066b046cf"'
         in: path
         name: id
         required: true
@@ -185,7 +185,7 @@ paths:
       operationId: get_like_by_id
       parameters:
       - description: uuid of like to get or delete article-user pair from storage
-        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        example: '"22e07f21-85cf-4ee6-ba35-330066b046cf"'
         in: path
         name: id
         required: true
