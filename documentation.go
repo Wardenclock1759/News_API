@@ -103,6 +103,7 @@ type tagByIDResponseWrapper struct {
 	Body models.Tag
 }
 
+// Response with empty body
 // swagger:response noContent
 type noContentWrapper struct {
 }

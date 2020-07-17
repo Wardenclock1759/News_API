@@ -262,7 +262,8 @@ responses:
       items:
         $ref: '#/definitions/Like'
       type: array
-  noContent: {}
+  noContent:
+    description: Response with empty body
   tagByIDResponse:
     description: Single tag in the response
     schema:
