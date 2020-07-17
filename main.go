@@ -3,6 +3,7 @@ package main
 import (
 	"News_API/controllers"
 	"fmt"
+	"github.com/go-openapi/runtime/middleware"
 	"github.com/gorilla/mux"
 	"net/http"
 )
@@ -24,6 +25,11 @@ func main() {
 	router.HandleFunc("/like", controllers.GetLike).Methods("GET")
 	router.HandleFunc("/like/{ID}", controllers.GetLikeByID).Methods("GET")
 	router.HandleFunc("/like/{ID}", controllers.DeleteLike).Methods("DELETE")
+
+	opts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
+	sh := middleware.Redoc(opts, nil)
+	router.Handle("/docs", sh)
+	router.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
 	err := http.ListenAndServe(":5000", router)
 	if err != nil {
