@@ -7,7 +7,6 @@ type articleIDWrapper struct {
 	// uuid of article to get or delete article from storage
 	// in: path
 	// required: true
-	// example: "22e07f21-85cf-4ee6-ba35-330066b046cf"
 	ID string `json:"id"`
 }
 
@@ -15,7 +14,6 @@ type articleIDWrapper struct {
 type articleTagsWrapper struct {
 	// string of tag names separated by ',' to filter articles in storage
 	// in: query
-	// example: "None,Sport,Astronomy"
 	Tags string `json:"tags"`
 }
 
@@ -23,7 +21,6 @@ type articleTagsWrapper struct {
 type sortOrderWrapper struct {
 	// order "'ASC' or 'DESC' to sort articles by number of likes"
 	// in: query
-	// example: DESC
 	Order string `json:"order"`
 }
 
@@ -39,7 +36,6 @@ type likeIDWrapper struct {
 	// uuid of like to get or delete article-user pair from storage
 	// in: path
 	// required: true
-	// example: "22e07f21-85cf-4ee6-ba35-330066b046cf"
 	ID string `json:"id"`
 }
 
