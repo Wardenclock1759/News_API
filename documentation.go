@@ -4,7 +4,7 @@ import "News_API/models"
 
 // swagger:parameters get_article_by_id
 type articleIDWrapper struct {
-	// uuid of article to get or delete article from storage
+	// uuid of article to get article from storage
 	// in: path
 	// required: true
 	ID string `json:"id"`
@@ -34,6 +34,14 @@ type postArticleWrapper struct {
 // swagger:parameters get_like_by_id delete_like_by_id
 type likeIDWrapper struct {
 	// uuid of like to get or delete article-user pair from storage
+	// in: path
+	// required: true
+	ID string `json:"id"`
+}
+
+// swagger:parameters get_tag_by_id
+type tagIDWrapper struct {
+	// uuid of tag to get it from storage
 	// in: path
 	// required: true
 	ID string `json:"id"`

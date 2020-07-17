@@ -128,7 +128,7 @@ paths:
       description: Returns article with matching id if any
       operationId: get_article_by_id
       parameters:
-      - description: uuid of article to get or delete article from storage
+      - description: uuid of article to get article from storage
         in: path
         name: id
         required: true
@@ -216,6 +216,13 @@ paths:
     get:
       description: Returns tag with matching id if any
       operationId: get_tag_by_id
+      parameters:
+      - description: uuid of tag to get it from storage
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
       responses:
         "200":
           $ref: '#/responses/tagByIDResponse'
