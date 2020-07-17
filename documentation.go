@@ -12,14 +12,14 @@ type articleIDWrapper struct {
 
 // swagger:parameters list_articles
 type articleTagsWrapper struct {
-	// string of tag names separated by ',' to filter articles in storage
+	// tag names separated by comma
 	// in: query
 	Tags string `json:"tags"`
 }
 
 // swagger:parameters list_articles
 type sortOrderWrapper struct {
-	// order 'ASC' or 'DESC' to sort articles by number of likes
+	// sort articles by likes ASC or DESC
 	// in: query
 	Order string `json:"order"`
 }

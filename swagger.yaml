@@ -92,12 +92,12 @@ paths:
       description: Returns list of all articles in the storage
       operationId: list_articles
       parameters:
-      - description: string of tag names separated by ',' to filter articles in storage
+      - description: tag names separated by comma
         in: query
         name: tags
         type: string
         x-go-name: Tags
-      - description: order 'ASC' or 'DESC' to sort articles by number of likes
+      - description: sort articles by likes ASC or DESC
         in: query
         name: order
         type: string
