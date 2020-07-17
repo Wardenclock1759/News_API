@@ -1,0 +1,282 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  Article:
+    properties:
+      article_id:
+        description: uuid for article
+        type: string
+        x-go-name: ID
+      article_tag:
+        $ref: '#/definitions/Tag'
+      article_title:
+        description: news article title
+        type: string
+        uniqueItems: true
+        x-go-name: Title
+      liked_by:
+        description: users that liked that article
+        items:
+          $ref: '#/definitions/User'
+        type: array
+        x-go-name: LikedBy
+    required:
+    - article_title
+    type: object
+    x-go-package: News_API/models
+  Like:
+    properties:
+      article_id:
+        description: uuid for article in the system
+        type: string
+        x-go-name: ArticleID
+      id:
+        description: uuid for like
+        type: string
+        x-go-name: ID
+      liked_at:
+        description: time when like was created
+        format: date-time
+        type: string
+        x-go-name: LikedAt
+      unliked_at:
+        description: time when like was deleted
+        format: date-time
+        type: string
+        x-go-name: UnlikedAt
+      user_id:
+        description: uuid for user in the system
+        type: string
+        x-go-name: UserID
+    required:
+    - article_id
+    - user_id
+    type: object
+    x-go-package: News_API/models
+  Tag:
+    properties:
+      tag_id:
+        description: uuid for tag
+        type: string
+        x-go-name: ID
+      tag_name:
+        description: tag name
+        type: string
+        x-go-name: Name
+    required:
+    - tag_name
+    type: object
+    x-go-package: News_API/models
+  User:
+    properties:
+      user_id:
+        description: uuid for user
+        type: string
+        x-go-name: ID
+      user_name:
+        description: username
+        type: string
+        x-go-name: Name
+    required:
+    - user_name
+    type: object
+    x-go-package: News_API/models
+info:
+  description: Documentation for News API
+  title: of News API
+  version: 1.0.0
+paths:
+  /article:
+    get:
+      description: Returns list of all articles in the storage
+      operationId: list_articles
+      parameters:
+      - description: string of tag names separated by ',' to filter articles in storage
+        example: None,Sport,Astronomy
+        in: query
+        name: tags
+        type: string
+        x-go-name: Tags
+      - description: order "ASC" or "DESC" to sort articles by number of likes
+        example: DESC
+        in: query
+        name: order
+        type: string
+        x-go-name: Order
+      responses:
+        "200":
+          $ref: '#/responses/articleResponse'
+      tags:
+      - articles
+    post:
+      description: Create article and add it to the storage
+      operationId: post_article
+      parameters:
+      - description: POST required and optional data about article
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/Article'
+      responses:
+        "200":
+          $ref: '#/responses/articleByIDResponse'
+        "400":
+          $ref: '#/responses/noContent'
+      tags:
+      - articles
+  /article/{id}:
+    get:
+      description: Returns article with matching id if any
+      operationId: get_article_by_id
+      parameters:
+      - description: uuid of article to get or delete article from storage
+        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/articleByIDResponse'
+        "404":
+          $ref: '#/responses/noContent'
+      tags:
+      - articles
+  /like:
+    get:
+      description: Returns list of all likes in the storage
+      operationId: list_likes
+      responses:
+        "200":
+          $ref: '#/responses/likeResponse'
+      tags:
+      - likes
+    post:
+      description: Create like and add it to the storage
+      operationId: post_like
+      responses:
+        "200":
+          $ref: '#/responses/likeByIDResponse'
+        "400":
+          $ref: '#/responses/noContent'
+      tags:
+      - likes
+  /like/{id}:
+    delete:
+      description: Deletes like with matching id if any
+      operationId: delete_like_by_id
+      parameters:
+      - description: uuid of like to get or delete article-user pair from storage
+        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/noContent'
+      tags:
+      - likes
+    get:
+      description: Returns like with matching id if any
+      operationId: get_like_by_id
+      parameters:
+      - description: uuid of like to get or delete article-user pair from storage
+        example: 22e07f21-85cf-4ee6-ba35-330066b046cf
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/likeByIDResponse'
+        "404":
+          $ref: '#/responses/noContent'
+      tags:
+      - likes
+  /tag:
+    get:
+      description: Returns list of all tags in the storage
+      operationId: list_tag
+      responses:
+        "200":
+          $ref: '#/responses/tagResponse'
+      tags:
+      - tags
+    post:
+      description: Create tag and add it to the storage
+      operationId: post_tag
+      responses:
+        "200":
+          $ref: '#/responses/tagByIDResponse'
+        "400":
+          $ref: '#/responses/noContent'
+      tags:
+      - tags
+  /tag/{id}:
+    get:
+      description: Returns tag with matching id if any
+      operationId: get_tag_by_id
+      responses:
+        "200":
+          $ref: '#/responses/tagByIDResponse'
+        "404":
+          $ref: '#/responses/noContent'
+      tags:
+      - tags
+  /user:
+    get:
+      description: Returns list of all users in the storage
+      operationId: list_user
+      responses:
+        "200":
+          $ref: '#/responses/userResponse'
+      tags:
+      - users
+produces:
+- application/json
+responses:
+  articleByIDResponse:
+    description: Single article in the response
+    schema:
+      $ref: '#/definitions/Article'
+  articleResponse:
+    description: A list of articles in the response
+    schema:
+      items:
+        $ref: '#/definitions/Article'
+      type: array
+  likeByIDResponse:
+    description: Single like in the response
+    schema:
+      $ref: '#/definitions/Like'
+  likeResponse:
+    description: A list of likes in the response
+    schema:
+      items:
+        $ref: '#/definitions/Like'
+      type: array
+  noContent: {}
+  tagByIDResponse:
+    description: Single tag in the response
+    schema:
+      $ref: '#/definitions/Tag'
+  tagResponse:
+    description: A list of tags in the response
+    schema:
+      items:
+        $ref: '#/definitions/Tag'
+      type: array
+  userResponse:
+    description: A list of users in the response
+    schema:
+      items:
+        $ref: '#/definitions/User'
+      type: array
+schemes:
+- http
+swagger: "2.0"
