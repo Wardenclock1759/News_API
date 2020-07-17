@@ -1,3 +1,17 @@
+// Package classification of News API
+//
+// Documentation for News API
+//
+// Schemes: http
+// BasePath: /
+// Version: 1.0.0
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+// swagger:meta
 package controllers
 
 import (
@@ -10,6 +24,10 @@ import (
 	"strings"
 )
 
+// swagger:route GET /article articles list_articles
+// Returns list of all articles in the storage
+// responses:
+//	200: articleResponse
 func GetArticle(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 
@@ -40,13 +58,18 @@ func GetArticle(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// swagger:route GET /article/{id} articles get_article_by_id
+// Returns article with matching id if any
+// responses:
+//	200: articleByIDResponse
+//	404: noContent
 func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	id := mux.Vars(r)["ID"]
 	article, ok := models.GetArticleByID(id)
 
 	if !ok {
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
@@ -59,8 +82,12 @@ func GetArticleByID(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonArticle)
 }
 
+// swagger:route POST /article articles post_article
+// Create article and add it to the storage
+// responses:
+//	200: articleByIDResponse
+//	400: noContent
 func AddArticle(w http.ResponseWriter, r *http.Request) {
-
 	w.Header().Set("content-type", "application/json")
 	jsonBody, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()

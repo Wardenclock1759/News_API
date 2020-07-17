@@ -1,7 +1,15 @@
 package models
 
+// swagger:model
 type User struct {
-	ID   string `json:"user_id"`
+	// uuid for user
+	//
+	// required: false
+	ID string `json:"user_id"`
+
+	// username
+	//
+	// required: true
 	Name string `json:"user_name"`
 }
 

@@ -6,6 +6,10 @@ import (
 	"net/http"
 )
 
+// swagger:route GET /user users list_user
+// Returns list of all users in the storage
+// responses:
+//	200: userResponse
 func GetUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	users := models.GetUsers()

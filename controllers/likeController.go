@@ -9,6 +9,11 @@ import (
 	"net/http"
 )
 
+// swagger:route POST /like likes post_like
+// Create like and add it to the storage
+// responses:
+//	200: likeByIDResponse
+//	400: noContent
 func AddLike(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	jsonBody, err := ioutil.ReadAll(r.Body)
@@ -42,6 +47,10 @@ func AddLike(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(like)
 }
 
+// swagger:route GET /like likes list_likes
+// Returns list of all likes in the storage
+// responses:
+//	200: likeResponse
 func GetLike(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	like := models.GetLike()
@@ -57,13 +66,18 @@ func GetLike(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// swagger:route GET /like/{id} likes get_like_by_id
+// Returns like with matching id if any
+// responses:
+//	200: likeByIDResponse
+//	404: noContent
 func GetLikeByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	id := mux.Vars(r)["ID"]
 	like, ok := models.GetLikeByID(id)
 
 	if !ok {
-		w.WriteHeader(http.StatusBadRequest)
+		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
@@ -76,6 +90,10 @@ func GetLikeByID(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonLike)
 }
 
+// swagger:route DELETE /like/{id} likes delete_like_by_id
+// Deletes like with matching id if any
+// responses:
+//	200: noContent
 func DeleteLike(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	id := mux.Vars(r)["ID"]

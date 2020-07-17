@@ -4,10 +4,27 @@ import (
 	"sort"
 )
 
+// swagger:model
 type Article struct {
-	ID      string `json:"article_id"`
-	Title   string `json:"article_title"`
-	Tag     Tag    `json:"article_tag"`
+	// uuid for article
+	//
+	// required: false
+	ID string `json:"article_id"`
+
+	// news article title
+	//
+	// required: true
+	// unique: true
+	Title string `json:"article_title"`
+
+	// tag to describe news article
+	//
+	// required: false
+	Tag Tag `json:"article_tag"`
+
+	// users that liked that article
+	//
+	// required: false
 	LikedBy []User `json:"liked_by"`
 }
 

@@ -7,6 +7,10 @@ import (
 	"net/http"
 )
 
+// swagger:route GET /tag tags list_tag
+// Returns list of all tags in the storage
+// responses:
+//	200: tagResponse
 func GetTag(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	tags := models.GetTags()
@@ -22,6 +26,11 @@ func GetTag(w http.ResponseWriter, r *http.Request) {
 	w.Write(res)
 }
 
+// swagger:route GET /tag/{id} tags get_tag_by_id
+// Returns tag with matching id if any
+// responses:
+//	200: tagByIDResponse
+//	404: noContent
 func GetTagByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 	id := mux.Vars(r)["ID"]
@@ -41,6 +50,11 @@ func GetTagByID(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonTag)
 }
 
+// swagger:route POST /tag tags post_tag
+// Create tag and add it to the storage
+// responses:
+//	200: tagByIDResponse
+//	400: noContent
 func AddTag(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
 

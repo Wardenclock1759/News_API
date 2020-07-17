@@ -1,7 +1,15 @@
 package models
 
+// swagger:model
 type Tag struct {
-	ID   string `json:"tag_id"`
+	// uuid for tag
+	//
+	// required: false
+	ID string `json:"tag_id"`
+
+	// tag name
+	//
+	// required: true
 	Name string `json:"tag_name"`
 }
 

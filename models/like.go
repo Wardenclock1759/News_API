@@ -2,11 +2,31 @@ package models
 
 import "time"
 
+// swagger:model
 type Like struct {
-	ID        string    `json:"id"`
-	ArticleID string    `json:"article_id"`
-	UserID    string    `json:"user_id"`
-	LikedAt   time.Time `json:"liked_at"`
+	// uuid for like
+	//
+	// required: false
+	ID string `json:"id"`
+
+	// uuid for article in the system
+	//
+	// required: true
+	ArticleID string `json:"article_id"`
+
+	// uuid for user in the system
+	//
+	// required: true
+	UserID string `json:"user_id"`
+
+	// time when like was created
+	//
+	// required: false
+	LikedAt time.Time `json:"liked_at"`
+
+	// time when like was deleted
+	//
+	// required: false
 	UnlikedAt time.Time `json:"unliked_at"`
 }
 
