@@ -84,9 +84,9 @@ func TestGetArticleByID(t *testing.T) {
 		expectedTitle      string
 		expectedStatusCode int
 	}{
-		{name: "get article with empty id", id: "", expectedTitle: "", expectedStatusCode: http.StatusBadRequest},
+		{name: "get article with empty id", id: "", expectedTitle: "", expectedStatusCode: http.StatusNotFound},
 		{name: "get article with valid id", id: "1st", expectedTitle: "Sport is cool", expectedStatusCode: http.StatusOK},
-		{name: "get article with invalid id", id: "oisdfnkjsdnf", expectedTitle: "", expectedStatusCode: http.StatusBadRequest},
+		{name: "get article with invalid id", id: "oisdfnkjsdnf", expectedTitle: "", expectedStatusCode: http.StatusNotFound},
 	}
 
 	for _, tc := range tt {
