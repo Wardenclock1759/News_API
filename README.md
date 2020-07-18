@@ -32,4 +32,13 @@ Things to know about:
   ```
     swagger generate spec -o ./swagger.yaml --scan-models
   ```
-  - You can find published Open API specification on swaggerhub at https://app.swaggerhub.com/apis/Wardenclock1759/of-news_api/1.0.0
+  - Published Open API specification on swaggerhub at https://app.swaggerhub.com/apis/Wardenclock1759/of-news_api/1.0.0
+  - Docker image: https://hub.docker.com/r/wardenclock/news-api-docker/tags
+  ```
+  docker pull wardenclock/news-api-docker:v1
+  ```
+  - To operate docker-compose.yml you should do the following:
+  ```
+  docker-compose up -d
+  docker-compose run -d -p 8000:5000 news-api-service
+  ```
