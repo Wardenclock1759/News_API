@@ -26,7 +26,8 @@ What can you do with it?
 5. View swagger docs at /docs
 
 Things to know about:
-  - There are *some* tests in main_test.go that by all means don't cover everything
+  - There are *some* tests in main_test.go that cover required features
+  - In all models there are presets for tests
   - Open API is generated with swagger package https://github.com/go-swagger/go-swagger using:
   ```
     swagger generate spec -o ./swagger.yaml --scan-models
