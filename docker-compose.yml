@@ -1,0 +1,10 @@
+version: '3'
+services:
+  news-api-service:
+    image: wardenclock/news-api-docker:v1
+    container_name: news-container
+    tty: true
+    build:
+      context: .
+    ports:
+    - 5000:80
