@@ -1,5 +1,5 @@
 # News_API
-## This project is a part of xsolla summer school entry test.
+## This project is a part of Xsolla summer school entry test.
 
 In this very basic API you can work with:
 - Article - simple model with title, tag and array of users, who liked it.
