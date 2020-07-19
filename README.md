@@ -1,7 +1,7 @@
 # News_API
 ## This project is a part of xsolla summer school entry test.
 
-In this vary basic API you can work with:
+In this very basic API you can work with:
 - Article - simple model with title, tag and array of users, who liked it.
 - Tag - just made for filtering purposes.
 - User - just here to add like and remove it.
