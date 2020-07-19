@@ -42,3 +42,4 @@ Things to know about:
   docker-compose up -d
   docker-compose run -d -p 8000:5000 news-api-service
   ```
+  - All works on localhost:8000/ at least for me. And don't forget to turn it off by typing ```docker-compose down```
